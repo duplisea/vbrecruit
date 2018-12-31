@@ -5,7 +5,7 @@ Authors@R: person("Daniel", "Duplisea", email = "daniel.duplisea@dfo-mpo.gc.ca",
 Description: Based on Von Bertalanffy growth parameters, variation in growth and year of birth, 
   this calculates what percentage of a cohort's individuals will be at or above a certain length class each year.
   Special attention is drawn to the median, i.e. when half the cohort reaches a certain size.
-Depends: R (>= 3.5.1)
+Depends: R (>= 3.5.1), mgcv
 License: Open, use as you wish. No assurances or guarantees for the code or its use.
 Encoding: UTF-8
 LazyData: true

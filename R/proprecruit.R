@@ -79,6 +79,10 @@ vb.growth.f= function(age.vector,Linf,k,t0,cv){
 #' @export
 #' @examples
 propinterp.f= function(recruiting.matrix, birth.year, final.year, len){
+  if (!requireNamespace("mgcv", quietly = TRUE)) {
+    stop("Package \"mcgv\" needed for this function to work. Please install it.",
+      call. = FALSE)
+  }
   library(mgcv)
   tmp= data.frame(year=(birth.year+1):final.year, props= as.numeric(recruiting.matrix[len,]))
   interpgam= gam(year~ s(props),data=tmp)
