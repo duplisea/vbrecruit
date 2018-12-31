@@ -3,8 +3,6 @@ Proportion of a cohort recruiting to different sizes each year
 
 Install in R by pasting the following into the R command line
 
-    install.packages("devtools")
-  
     library(devtools)
   
     install_github("duplisea/vbrecruit")
