@@ -28,7 +28,9 @@ Using a Von Bertalanffy growth function and parameters you supply, this determin
 of a cohort's numbers and biomass that are at or above different size classes each year
 }
 \examples{
-cohort.props.f(birth.year=2011, final.year = 2030, Linf = 42, k = 0.086, t0 = -1.57, cv = 0.089, lw.a = -4.605, lw.b = 3.08)
+cohort.props.f(birth.year=2011, final.year = 2030, Linf = 42, k = 0.086, t0 = -1.57, cv = 0.089,
+   lw.a = -4.605, lw.b = 3.08)
+vb.growth.f(age.vector=1:40,Linf=42,k=0.086,t0=-1.57,cv=0.1)
 }
 \keyword{VonBertalanffy}
 \keyword{age}

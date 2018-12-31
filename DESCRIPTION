@@ -1,10 +1,12 @@
 Package: vbrecruit
-Title: What the Package Does (one line, title case)
+Title: Calculate proportion of a cohort recruit each year based on VB growth
 Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Authors@R: person("Daniel", "Duplisea", email = "daniel.duplisea@dfo-mpo.gc.ca", role = c("aut", "cre"))
+Description: Based on Von Bertalanffy growth parameters, variation in growth and year of birth, 
+  this calculates what percentage of a cohort's individuals will be at or above a certain length class each year.
+  Special attention is drawn to the median, i.e. when half the cohort reaches a certain size.
 Depends: R (>= 3.5.1)
-License: What license is it under?
+License: Open, use as you wish. No assurances or guarantees for the code or its use.
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1

@@ -1,4 +1,4 @@
-#' Proportion of a cohort recruiting each year 
+#' Proportion of a cohort recruiting each year
 #'
 #' Using a Von Bertalanffy growth function and parameters you supply, this determines the proportion
 #' of a cohort's numbers and biomass that are at or above different size classes each year
@@ -13,8 +13,9 @@
 #' @keywords VonBertalanffy growth recruit age
 #' @export
 #' @examples
-#' cohort.props.f(birth.year=2011, final.year = 2030, Linf = 42, k = 0.086, t0 = -1.57, cv = 0.089, lw.a = -4.605, lw.b = 3.08)
- 
+#' cohort.props.f(birth.year=2011, final.year = 2030, Linf = 42, k = 0.086, t0 = -1.57, cv = 0.089,
+#'    lw.a = -4.605, lw.b = 3.08)
+#' vb.growth.f(age.vector=1:40,Linf=42,k=0.086,t0=-1.57,cv=0.1)
 cohort.props.f= function(birth.year, final.year, Linf, k, t0, cv,lw.a,lw.b){
   years= 1:(final.year-birth.year)
   lengths=ceiling(Linf+Linf*cv*3):1 #need to reverse length vector to make diff work properly.
@@ -26,10 +27,11 @@ cohort.props.f= function(birth.year, final.year, Linf, k, t0, cv,lw.a,lw.b){
   props.gte.len= as.data.frame(props.gte.len)
   names(props.gte.len)=c(paste("Y",(birth.year+1):final.year,sep=""))
   row.names(props.gte.len)=paste(lengths,"cm",sep="")
-
-  props.eq.len= apply(props.gte.len,2,diff) #computes the proportion of individuals in each size class noting that they are from largest to smallest size
+  #computes the proportion of individuals in each size class noting that they are from largest to smallest size
+  props.eq.len= apply(props.gte.len,2,diff)
   weight= (exp(lw.a)*lengths^lw.b)[-1]
-  bmass.len= props.eq.len*weight # multiply the proportion in each length class by the nominal weight of individuals in that length class. this is essentially biomass
+  # multiply the proportion in each length class by the nominal weight of individuals in that length class.
+  bmass.len= props.eq.len*weight
 
 
   bmass.sum= apply(bmass.len,2,sum) # compute the total biomass for a year
@@ -41,7 +43,7 @@ cohort.props.f= function(birth.year, final.year, Linf, k, t0, cv,lw.a,lw.b){
   outp
 }
 
-#' Von Bertalanffy growth 
+#' Von Bertalanffy growth
 #'
 #' Using a Von Bertalanffy growth function and parameters you supply, show the trajectory for the supplied age vector
 #' @param age.vector ages
@@ -55,7 +57,7 @@ cohort.props.f= function(birth.year, final.year, Linf, k, t0, cv,lw.a,lw.b){
 #' @export
 #' @examples
 #' vb.growth.f(age.vector=1:40,Linf=42,k=0.086,t0=-1.57,cv=0.1)
-  
+#' cohort.props.f(birth.year=2011, final.year = 2030, Linf = 42, k = 0.086, t0 = -1.57, cv = 0.089, lw.a = -4.605, lw.b = 3.08)
 vb.growth.f= function(age.vector,Linf,k,t0,cv){
   Amax= max(age.vector) #maximum age
   A=age.vector
@@ -67,7 +69,94 @@ vb.growth.f= function(age.vector,Linf,k,t0,cv){
   vb.growth
 }
 
-#create a plotting function so the vb curve is plotted as well as the proportion recruiting in both numbers and biomass
-# four panel, parameters in panel 1, vb growth curve in panel 2, prop numbers in panel 3, prop biomass in panel 4
+#' gam interpolation of sigmoidal curve
+#'
+#' Just for plotting. Gives the year where probability = 50%
+#' @param birth.year four digit year of birth
+#' @param final.year four digit final year of the growth projection (birth year + average max age is a good)
+#' @param len length class of interest
+#' @param proportion the proportion of interest
+#' @export
+#' @examples
+propinterp.f= function(recruiting.matrix, birth.year, final.year, len){
+  library(mgcv)
+  tmp= data.frame(year=(birth.year+1):final.year, props= as.numeric(recruiting.matrix[len,]))
+  interpgam= gam(year~ s(props),data=tmp)
+  pred.year= predict(interpgam,newdata=data.frame(props= 0.5))
+  pred.year
+  }
 
+#' The proportion of a cohort of at or above difference sizes cumulative distribution
+#'
+#' Using a Von Bertalanffy growth function and parameters you supply, this determines the proportion
+#' of a cohort's numbers and biomass that are at or above different size classes each year and plots them. A helper
+#' function not usually called directly. It is called by the overall vbrecruit function.
+#' @param proj.object a projection object produced by vbgrowth.f
+#' @param birth.year four digit year of birth
+#' @param final.year four digit final year of the growth projection (birth year + average max age is a good)
+#' @param lengths.of.interest (often the length at recruitment to the fishery or a valuable size
+#' @param cv coefficient of variation on length for an age
+#' @keywords VonBertalanffy growth recruit age
+#' @export
+#' @examples
+#' vbrecruit.f(birth.year=2011, final.year = 2050, Linf = 42, k = 0.086, t0 = -1.57, cv = 0.089,
+#'    lw.a = -4.605, lw.b = 3.08,lengths.of.interest=c(22,25,27,30))
+#' cohort.props.f(birth.year=2011, final.year = 2030, Linf = 42, k = 0.086, t0 = -1.57, cv = 0.089,
+#'    lw.a = -4.605, lw.b = 3.08)
+#' vb.growth.f(age.vector=1:40,Linf=42,k=0.086,t0=-1.57,cv=0.089)
+plotcdfa.f= function(proj.object,lengths.of.interest,birth.year,final.year,cv){
+  abund= proj.object$abundance.props
+  years= (birth.year+1):final.year
+  plot(years,abund[lengths.of.interest[1],],lwd=2,type="n",xlab="",ylab="",las=1,cex.axis=.85,ylim=c(0,1))
+  for (i in lengths.of.interest){
+    lines(years,abund[i,],lwd=2)
+    y50= propinterp.f(recruiting.matrix=abund, birth.year=birth.year, final.year=final.year,
+      len=i)
+#    text(y50,0.65,paste(i,"cm"),cex=0.6)
+    points(y50,0.5,pch=21,cex=1.7,bg="white")
+    text(y50,.5,i,cex=0.5)
+    lines(c(y50,y50),c(-.5,0.5),col="grey",lty=1)
+  }
+  legend("topleft",legend=paste("birth year=",birth.year,sep=""),bty="n",cex=0.6,xjust=0)
+}
 
+#' Proportion of a cohort recruiting each year, plots, wrapper function
+#'
+#' Using a Von Bertalanffy growth function and parameters you supply, this determines the proportion
+#' of a cohort's numbers and biomass that are at or above different size classes each year
+#' @param birth.year four digit year of birth
+#' @param final.year four digit final year of the growth projection (birth year + average max age is a good)
+#' @param Linf VB maximum length (cm)
+#' @param k VB k
+#' @param t0 VB t-zero
+#' @param cv coefficient of variation on length for an age
+#' @param lw.a a parameter for length (cm) - weight (g) exponential function
+#' @param lw.b b parameter for length (cm) - weight (g) exponential function
+#' @param lengths.of.interest (often the length at recruitment to the fishery or a valuable size
+#' @keywords VonBertalanffy growth recruit age
+#' @export
+#' @examples
+#' cohort.props.f(birth.year=2011, final.year = 2030, Linf = 42, k = 0.086, t0 = -1.57, cv = 0.089,
+#'    lw.a = -4.605, lw.b = 3.08)
+#' vb.growth.f(age.vector=1:40,Linf=42,k=0.086,t0=-1.57,cv=0.089)
+#' recruit=vbrecruit.f(birth.year=2011, final.year = 2035, Linf = 42, k = 0.086, t0 = -1.57, cv = 0.089,
+#'    lw.a = -4.605, lw.b = 3.08, lengths.of.interest=c(25,22,27,30,35))
+vbrecruit.f= function(birth.year, final.year, Linf, k, t0, cv,lw.a,lw.b,lengths.of.interest){
+  props= cohort.props.f(birth.year=birth.year, final.year=final.year, Linf=Linf, k=k, t0=t0, cv=cv,lw.a=lw.a,lw.b=lw.b)
+  ages= 0:(final.year-birth.year)
+  growth= vb.growth.f(age.vector=ages,Linf=Linf,k=k,t0=t0,cv=cv)
+  old.pars=par()
+  par(mfcol=c(2,1),mar=c(3,3,1,3),omi=c(.01,1.5,.01,1.5))
+  plot(growth$Age,growth$Length,xlab="Age", ylab="Length (cm)",type="n",ylim=c(0,max(growth$Length.CI.high)+1.01),cex.axis=.85)
+    mtext("Age (years)",side=1,line=2)
+    mtext("Length (cm)",side=2,line=2.5)
+    legend("bottomright",legend=c(paste("Linf=",Linf),paste("k=",k),paste("t0=",t0),paste("cv=",cv)),bty="n",cex=0.6)
+  polygon(x=c(growth$Age, rev(growth$Age)), y=c(growth$Length.CI.low,rev(growth$Length.CI.high)), col = "grey", border = NA)
+  lines(growth$Age,growth$Length,lwd=2)
+  props$vb= growth
+  plotcdfa.f(props,lengths.of.interest=lengths.of.interest,birth.year=birth.year,final.year=final.year,cv=cv)
+    mtext("Year",side=1,line=2)
+    mtext("Prop abundance > size",side=2,line=2.5)
+  par=old.pars
+  props
+}

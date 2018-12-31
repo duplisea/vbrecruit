@@ -26,6 +26,7 @@ Using a Von Bertalanffy growth function and parameters you supply, show the traj
 }
 \examples{
 vb.growth.f(age.vector=1:40,Linf=42,k=0.086,t0=-1.57,cv=0.1)
+cohort.props.f(birth.year=2011, final.year = 2030, Linf = 42, k = 0.086, t0 = -1.57, cv = 0.089, lw.a = -4.605, lw.b = 3.08)
 }
 \keyword{VonBertalanffy}
 \keyword{age}
