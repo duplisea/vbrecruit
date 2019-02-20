@@ -4,8 +4,7 @@
 \alias{vbrecruit.f}
 \title{Proportion of a cohort recruiting each year, plots, wrapper function}
 \usage{
-vbrecruit.f(birth.year, final.year, Linf, k, t0, cv, lw.a, lw.b,
-  lengths.of.interest)
+vbrecruit.f(birth.year, final.year, Linf, k, t0, cv, lengths.of.interest)
 }
 \arguments{
 \item{birth.year}{four digit year of birth}
@@ -20,10 +19,6 @@ vbrecruit.f(birth.year, final.year, Linf, k, t0, cv, lw.a, lw.b,
 
 \item{cv}{coefficient of variation on length for an age}
 
-\item{lw.a}{a parameter for length (cm) - weight (g) exponential function}
-
-\item{lw.b}{b parameter for length (cm) - weight (g) exponential function}
-
 \item{lengths.of.interest}{(often the length at recruitment to the fishery or a valuable size}
 }
 \description{
@@ -31,11 +26,10 @@ Using a Von Bertalanffy growth function and parameters you supply, this determin
 of a cohort's numbers and biomass that are at or above different size classes each year
 }
 \examples{
-cohort.props.f(birth.year=2011, final.year = 2030, Linf = 42, k = 0.086, t0 = -1.57, cv = 0.089,
-   lw.a = -4.605, lw.b = 3.08)
+cohort.props.f(birth.year=2011, final.year = 2030, Linf = 42, k = 0.086, t0 = -1.57, cv = 0.089)
 vb.growth.f(age.vector=1:40,Linf=42,k=0.086,t0=-1.57,cv=0.089)
 recruit=vbrecruit.f(birth.year=2011, final.year = 2035, Linf = 42, k = 0.086, t0 = -1.57, cv = 0.089,
-   lw.a = -4.605, lw.b = 3.08, lengths.of.interest=c(25,22,27,30,35))
+   lengths.of.interest=c(25,22,27,30,35))
 }
 \keyword{VonBertalanffy}
 \keyword{age}

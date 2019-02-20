@@ -16,17 +16,13 @@ vb.growth.f(age.vector, Linf, k, t0, cv)
 \item{t0}{VB t-zero}
 
 \item{cv}{coefficient of variation on length for an age}
-
-\item{lw.a}{a parameter for length (cm) - weight (g) exponential function}
-
-\item{lw.b}{b parameter for length (cm) - weight (g) exponential function}
 }
 \description{
 Using a Von Bertalanffy growth function and parameters you supply, show the trajectory for the supplied age vector
 }
 \examples{
 vb.growth.f(age.vector=1:40,Linf=42,k=0.086,t0=-1.57,cv=0.1)
-cohort.props.f(birth.year=2011, final.year = 2030, Linf = 42, k = 0.086, t0 = -1.57, cv = 0.089, lw.a = -4.605, lw.b = 3.08)
+cohort.props.f(birth.year=2011, final.year = 2030, Linf = 42, k = 0.086, t0 = -1.57, cv = 0.089)
 }
 \keyword{VonBertalanffy}
 \keyword{age}

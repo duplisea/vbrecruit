@@ -1,12 +1,13 @@
 Package: vbrecruit
+Type: Package
 Title: Calculate proportion of a cohort recruit each year based on VB growth
-Version: 0.0.0.9000
+Version: 0.0999
 Authors@R: person("Daniel", "Duplisea", email = "daniel.duplisea@dfo-mpo.gc.ca", role = c("aut", "cre"))
 Description: Based on Von Bertalanffy growth parameters, variation in growth and year of birth, 
   this calculates what percentage of a cohort's individuals will be at or above a certain length class each year.
   Special attention is drawn to the median, i.e. when half the cohort reaches a certain size.
-Depends: R (>= 3.5.1), mgcv
-License: Open, use as you wish. No assurances or guarantees for the code or its use.
+License: 2019 Canadian Crown Copyright, use as you wish no guarantees
 Encoding: UTF-8
 LazyData: true
+Depends: mgcv
 RoxygenNote: 6.1.1
