@@ -1,8 +1,8 @@
 ---
-title: "README"
+title: "Proportion of a cohort recruiting"
 author: "Daniel Duplisea"
 date: "19 February 2019"
-output: html_document
+output: md_document
 ---
 
 ```{r setup, include=FALSE}
@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Time of recruitment to different sizes
 
 Based on von Bertalanffy growth parameters given to the function, the CV around length at age and the year of birth, this determines the proporption of a year class's individuals that are at or above a certain specified length in each year. This is plotted as cumulative distribution functions. It assumes normally distributed lengths for an age based on the cv supplied.
-```{r install}
+```{r install, message=FALSE}
 devtools::install_github("duplisea/vbrecruit")
 library(vbrecruit)
 ```
