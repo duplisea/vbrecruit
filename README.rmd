@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Based on von Bertalanffy growth parameters given to the function, the CV around length at age and the year of birth, this determines the proporption of a year class's individuals that are at or above a certain specified length in each year. This is plotted as cumulative distribution functions. It assumes normally distributed lengths for an age based on the cv supplied.
 ```{r install}
-devtools::install_github{"duplisea/vbrecruit")
+devtools::install_github("duplisea/vbrecruit")
 library(vbrecruit)
 ```
 

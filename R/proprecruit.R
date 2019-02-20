@@ -8,8 +8,6 @@
 #' @param k VB k
 #' @param t0 VB t-zero
 #' @param cv coefficient of variation on length for an age
-#' @param lw.a a parameter for length (cm) - weight (g) exponential function
-#' @param lw.b b parameter for length (cm) - weight (g) exponential function
 #' @keywords VonBertalanffy growth recruit age
 #' @export
 #' @examples
@@ -135,7 +133,7 @@ plotcdfa.f= function(proj.object,lengths.of.interest,birth.year,final.year,cv){
 #' recruit=vbrecruit.f(birth.year=2011, final.year = 2035, Linf = 42, k = 0.086, t0 = -1.57, cv = 0.089,
 #'    lengths.of.interest=c(25,22,27,30,35))
 vbrecruit.f= function(birth.year, final.year, Linf, k, t0, cv,lengths.of.interest){
-  props= cohort.props.f(birth.year=birth.year, final.year=final.year, Linf=Linf, k=k, t0=t0, cv=cv,lw.a=lw.a,lw.b=lw.b)
+  props= cohort.props.f(birth.year=birth.year, final.year=final.year, Linf=Linf, k=k, t0=t0, cv=cv)
   ages= 0:(final.year-birth.year)
   growth= vb.growth.f(age.vector=ages,Linf=Linf,k=k,t0=t0,cv=cv)
   old.pars=par()

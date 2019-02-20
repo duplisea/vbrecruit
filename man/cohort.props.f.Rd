@@ -18,10 +18,6 @@ cohort.props.f(birth.year, final.year, Linf, k, t0, cv)
 \item{t0}{VB t-zero}
 
 \item{cv}{coefficient of variation on length for an age}
-
-\item{lw.a}{a parameter for length (cm) - weight (g) exponential function}
-
-\item{lw.b}{b parameter for length (cm) - weight (g) exponential function}
 }
 \description{
 Using a Von Bertalanffy growth function and parameters you supply, this determines the proportion
