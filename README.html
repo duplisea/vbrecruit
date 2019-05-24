@@ -387,11 +387,14 @@ $(document).ready(function () {
 <h2>Time of recruitment to different sizes</h2>
 <p>Based on von Bertalanffy growth parameters given to the function, the CV around length at age and the year of birth, this determines the proporption of a year class’s individuals that are at or above a certain specified length in each year. This is plotted as cumulative distribution functions. It assumes normally distributed lengths for an age based on the cv supplied. There are assumptions about mortality inherent in this, namely that mortality is not size based.</p>
 <p>It is a broad method that will provide an idea of the year when the majority of individuals in a cohort will reach a certain size.</p>
+</div>
+<div id="install-the-package" class="section level2">
+<h2>Install the package</h2>
 <pre class="r"><code>devtools::install_github(&quot;duplisea/vbrecruit&quot;)
 library(vbrecruit)</code></pre>
 </div>
-<div id="make-a-run.-based-on-unit-12-redfish-sebastes-spp." class="section level2">
-<h2>Make a run. Based on Unit 1+2 redfish (Sebastes spp.)</h2>
+<div id="calculate-the-curves-based-on-unit-12-redfish-sebastes-spp." class="section level2">
+<h2>Calculate the curves based on Unit 1+2 redfish (Sebastes spp.)</h2>
 <pre class="r"><code>recruit= vbrecruit.f(birth.year=2011, final.year = 2035, Linf = 42, k = 0.086, t0 = -1.57, 
   cv = 0.089, lengths.of.interest=c(22,25,27,30,35))</code></pre>
 <div class="figure">
@@ -400,7 +403,20 @@ library(vbrecruit)</code></pre>
 Figure 1: the VB growth curve (top) and the proportion of individuals in the cohort at particular lengths (circles) based on the growth rate and CV.
 </p>
 </div>
-<p>The top figure shows the Von Bertalanffy growth curve give the parameters supplied. The bottom figure shows the cumlative probability distributions for each size. So if a curve is identified by the number in the circle “25”, the way you read this is by seeing what propoportion of a cohort from your specified birth year will be greater than or equal to 25cm in each year. The 50% values are highlighted for each of your lengths of interest. That is, the 50% mark show when half of your individuals in the cohort will at that size.</p>
+<p>The top figure shows the Von Bertalanffy growth curve give the parameters supplied. The bottom figure shows the cumlative probability distributions for each size. So if a curve is identified by the number in the circle “25”, the way you read this is by seeing what propoportion of a cohort from your specified birth year will be greater than or equal to 25cm in each year. The 50% values are highlighted for each of your lengths of interest. That is, the 50% mark shows when half of your individuals in the cohort will at or above that size.</p>
+</div>
+<div id="use-rfishbase-to-get-vb-parameters-for-all-sorts-of-species-from-fishbase" class="section level2">
+<h2>Use rfishbase to get VB parameters for all sorts of species from fishbase</h2>
+<pre class="r"><code>devtools::install_github(&quot;ropensci/rfishbase&quot;)
+library(&quot;rfishbase&quot;)</code></pre>
+<p>Now query fishbase and make some plots</p>
+<pre class="r"><code>fish= &quot;Gadus morhua&quot;
+vb.params= popgrowth(fish,fields=c(&quot;TLinfinity&quot;,&quot;K&quot;,&quot;to&quot;))
+vb.mean= apply(vb.params,2,mean,na.rm=T)</code></pre>
+<p>Make plots for a generic cod stock for say a 2017 year class and length of 25cm (recuit index), 45cm (size at recruitment, 60cm (when they start to get valuable, 80cm (when they are very valuable)</p>
+<pre class="r"><code>cod= vbrecruit.f(birth.year= 2017, final.year= 2030, Linf= vb.mean[1], k= vb.mean[2], t0= vb.mean[3], 
+  cv= 0.1, lengths.of.interest=c(25,45,60,80))</code></pre>
+<p>&lt;img src=“README_files/figure-html/codrun”-1.png&quot; width=“672” /&gt;</p>
 </div>
 
 

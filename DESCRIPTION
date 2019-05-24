@@ -8,5 +8,6 @@ Description: Based on Von Bertalanffy growth parameters, variation in growth and
   Special attention is drawn to the median, i.e. when half the cohort reaches a certain size.
 License: 2019 Canadian Crown Copyright, use as you wish no guarantees
 Encoding: UTF-8
+requires: rfishbase
 LazyData: true
 RoxygenNote: 6.1.1
