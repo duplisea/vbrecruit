@@ -385,7 +385,8 @@ $(document).ready(function () {
 <p><a href="http://github.com/badges/stability-badges"><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjE5IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+dGV4dHthbGlnbm1lbnQtYmFzZWxpbmU6bWlkZGxlO2ZvbnQtZmFtaWx5OkFyaWFsLHNhbnMtc2VyaWY7Zm9udC1zaXplOjEwcHh9PC9zdHlsZT48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iOTUiIGhlaWdodD0iMTkiIHN0eWxlPSJmaWxsOiM0YjRiNGI7b3BhY2l0eTowLjM7Ij48L3JlY3Q+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9Ijk1IiBoZWlnaHQ9IjE3IiBzdHlsZT0iZmlsbDojNGI0YjRiOyI+PC9yZWN0PjxyZWN0IHg9IjQ1IiB5PSIwIiB3aWR0aD0iNTAiIGhlaWdodD0iMTciIHN0eWxlPSJmaWxsOiNFNUFFMTM7Ij48L3JlY3Q+PHRleHQgeD0iNSIgeT0iOS41IiBzdHlsZT0iZmlsbDojMDAwO29wYWNpdHk6MC43NTsiPnN0YWJpbGl0eTwvdGV4dD48dGV4dCB4PSI1IiB5PSI4LjUiIHN0eWxlPSJmaWxsOiNmZmY7Ij5zdGFiaWxpdHk8L3RleHQ+PHRleHQgeD0iNTAiIHk9IjkuNSIgc3R5bGU9ImZpbGw6IzAwMDtvcGFjaXR5OjAuNzU7Ij51bnN0YWJsZTwvdGV4dD48dGV4dCB4PSI1MCIgeT0iOC41IiBzdHlsZT0iZmlsbDojZmZmOyI+dW5zdGFibGU8L3RleHQ+PC9zdmc+" alt="unstable" /></a></p>
 <div id="time-of-recruitment-to-different-sizes" class="section level2">
 <h2>Time of recruitment to different sizes</h2>
-<p>Based on von Bertalanffy growth parameters given to the function, the CV around length at age and the year of birth, this determines the proporption of a year class’s individuals that are at or above a certain specified length in each year. This is plotted as cumulative distribution functions. It assumes normally distributed lengths for an age based on the cv supplied.</p>
+<p>Based on von Bertalanffy growth parameters given to the function, the CV around length at age and the year of birth, this determines the proporption of a year class’s individuals that are at or above a certain specified length in each year. This is plotted as cumulative distribution functions. It assumes normally distributed lengths for an age based on the cv supplied. There are assumptions about mortality inherent in this, namely that mortality is not size based.</p>
+<p>It is a broad method that will provide an idea of the year when the majority of individuals in a cohort will reach a certain size.</p>
 <pre class="r"><code>devtools::install_github(&quot;duplisea/vbrecruit&quot;)
 library(vbrecruit)</code></pre>
 </div>
@@ -399,6 +400,7 @@ library(vbrecruit)</code></pre>
 Figure 1: the VB growth curve (top) and the proportion of individuals in the cohort at particular lengths (circles) based on the growth rate and CV.
 </p>
 </div>
+<p>The top figure shows the Von Bertalanffy growth curve give the parameters supplied. The bottom figure shows the cumlative probability distributions for each size. So if a curve is identified by the number in the circle “25”, the way you read this is by seeing what propoportion of a cohort from your specified birth year will be greater than or equal to 25cm in each year. The 50% values are highlighted for each of your lengths of interest. That is, the 50% mark show when half of your individuals in the cohort will at that size.</p>
 </div>
 
 
