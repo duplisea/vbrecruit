@@ -1,3 +1,5 @@
+[![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
+
 Time of recruitment to different sizes
 --------------------------------------
 
@@ -14,8 +16,6 @@ age based on the cv supplied.
 Make a run. Based on Unit 1+2 redfish (Sebastes spp.)
 -----------------------------------------------------
 
-    recruit=vbrecruit.f(birth.year=2011, final.year = 2035, Linf = 42, k = 0.086, t0 = -1.57, cv = 0.089, lengths.of.interest=c(25,22,27,30,35))
+    recruit=vbrecruit.f(birth.year=2011, final.year = 2035, Linf = 42, k = 0.086, t0 = -1.57, cv = 0.089, lengths.of.interest=c(22,25,27,30,35))
 
-![Figure 1: the VB growth curve (top) and the proportion of individuals
-in the cohort at particular lengths (circles) based on the growth rate
-and CV.](README_files/figure-markdown_strict/runvb-1.png)
+    ## Error in vbrecruit.f(birth.year = 2011, final.year = 2035, Linf = 42, : could not find function "vbrecruit.f"

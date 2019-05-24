@@ -9,5 +9,4 @@ Description: Based on Von Bertalanffy growth parameters, variation in growth and
 License: 2019 Canadian Crown Copyright, use as you wish no guarantees
 Encoding: UTF-8
 LazyData: true
-Depends: mgcv
 RoxygenNote: 6.1.1

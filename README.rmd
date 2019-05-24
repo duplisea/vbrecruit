@@ -1,18 +1,21 @@
 ---
 title: "Proportion of a cohort recruiting"
 author: "Daniel Duplisea"
-date: "19 February 2019"
+date: "23 May 2019"
 output: md_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+
+[![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE, error=TRUE)
 ```
 
 ## Time of recruitment to different sizes
 
 Based on von Bertalanffy growth parameters given to the function, the CV around length at age and the year of birth, this determines the proporption of a year class's individuals that are at or above a certain specified length in each year. This is plotted as cumulative distribution functions. It assumes normally distributed lengths for an age based on the cv supplied.
-```{r install, message=FALSE}
+```{r install, message=FALSE, eval=FALSE}
 devtools::install_github("duplisea/vbrecruit")
 library(vbrecruit)
 ```
@@ -20,5 +23,5 @@ library(vbrecruit)
 ## Make a run. Based on Unit 1+2 redfish (Sebastes spp.)
 
 ```{r runvb, fig.cap="Figure 1: the VB growth curve (top) and the proportion of individuals in the cohort at particular lengths (circles) based on the growth rate and CV."}
-recruit=vbrecruit.f(birth.year=2011, final.year = 2035, Linf = 42, k = 0.086, t0 = -1.57, cv = 0.089, lengths.of.interest=c(25,22,27,30,35))
+recruit=vbrecruit.f(birth.year=2011, final.year = 2035, Linf = 42, k = 0.086, t0 = -1.57, cv = 0.089, lengths.of.interest=c(22,25,27,30,35))
 ```

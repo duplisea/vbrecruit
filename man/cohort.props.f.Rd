@@ -9,7 +9,7 @@ cohort.props.f(birth.year, final.year, Linf, k, t0, cv)
 \arguments{
 \item{birth.year}{four digit year of birth}
 
-\item{final.year}{four digit final year of the growth projection (birth year + average max age is a good)}
+\item{final.year}{four digit final year of the growth projection (birth year + average max age is good)}
 
 \item{Linf}{VB maximum length (cm)}
 
