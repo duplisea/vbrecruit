@@ -1,6 +1,6 @@
 ---
 title: "Proportion of a cohort recruiting"
-output: html_document
+output: md_document
 ---
 
 
@@ -23,7 +23,7 @@ devtools::install_github("duplisea/vbrecruit")
 library(vbrecruit)
 ```
 
-```{r loadlib, message=FALSE, eval=TRUE,include=FALSE}
+```{r loadlib, message=FALSE, eval=TRUE, include=FALSE}
 library(vbrecruit)
 library(rfishbase)
 ```
@@ -31,7 +31,7 @@ library(rfishbase)
 
 ## Calculate the curves based on Unit 1+2 redfish (Sebastes spp.)
 
-```{r runvb, fig.cap="Figure 1: the VB growth curve (top) and the proportion of individuals in the cohort at particular lengths (circles) based on the growth rate and CV."}
+```{r runvbsebastes}
 recruit= vbrecruit.f(birth.year=2011, final.year = 2035, Linf = 42, k = 0.086, t0 = -1.57, 
   cv = 0.089, lengths.of.interest=c(22,25,27,30,35))
 ```
@@ -59,7 +59,7 @@ vb.mean= apply(vb.params,2,mean,na.rm=T)
 
 Make plots for a generic cod stock for say a 2017 year class and length of 25cm (recuit index), 45cm (size at recruitment, 60cm (when they start to get valuable, 80cm (when they are very valuable)
 
-```{r codrun"}
+```{r runvbcod}
 cod= vbrecruit.f(birth.year= 2017, final.year= 2030, Linf= round(vb.mean[1],0), k= round(vb.mean[2],2), t0= round(vb.mean[3],2), 
   cv= 0.1, lengths.of.interest=c(25,45,60,80))
 title(fish,outer=T,line=-0.75)
@@ -74,7 +74,7 @@ vb.mean= apply(vb.params,2,mean,na.rm=T)
 
 Make plots for a Chilean mackerel, Trachurus murphyi, stock for say a 2017 year class and lengths of 30cm, 40cm, 50, cm and 60cm.
 
-```{r chimackrun"}
+```{r runvbchimack}
 cod= vbrecruit.f(birth.year= 2017, final.year= 2030, Linf= round(vb.mean[1],0), k= round(vb.mean[2],2), t0= round(vb.mean[3],2), 
   cv= 0.1, lengths.of.interest=c(30, 40, 50, 60))
 title(fish,outer=T,line=-0.75)

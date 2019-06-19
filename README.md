@@ -26,9 +26,7 @@ Calculate the curves based on Unit 1+2 redfish (Sebastes spp.)
     recruit= vbrecruit.f(birth.year=2011, final.year = 2035, Linf = 42, k = 0.086, t0 = -1.57, 
       cv = 0.089, lengths.of.interest=c(22,25,27,30,35))
 
-![Figure 1: the VB growth curve (top) and the proportion of individuals
-in the cohort at particular lengths (circles) based on the growth rate
-and CV.](README_files/figure-markdown_strict/runvb-1.png)
+![](README_files/figure-markdown_strict/runvbsebastes-1.png)
 
 The top figure shows the Von Bertalanffy growth curve give the
 parameters supplied. The bottom figure shows the cumlative probability
@@ -67,7 +65,7 @@ to get valuable, 80cm (when they are very valuable)
       cv= 0.1, lengths.of.interest=c(25,45,60,80))
     title(fish,outer=T,line=-0.75)
 
-![](README_files/figure-markdown_strict/codrun%22-1.png)
+![](README_files/figure-markdown_strict/runvbcod-1.png)
 
     fish= "Trachurus murphyi"
     vb.params= popgrowth(fish,fields=c("TLinfinity","K","to"))
@@ -80,4 +78,4 @@ Make plots for a Chilean mackerel, Trachurus murphyi, stock for say a
       cv= 0.1, lengths.of.interest=c(30, 40, 50, 60))
     title(fish,outer=T,line=-0.75)
 
-![](README_files/figure-markdown_strict/chimackrun%22-1.png)
+![](README_files/figure-markdown_strict/runvbchimack-1.png)
