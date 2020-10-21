@@ -4,8 +4,16 @@
 \alias{plotcdfa.f}
 \title{The proportion of a cohort of at or above difference sizes cumulative distribution}
 \usage{
-plotcdfa.f(proj.object, lengths.of.interest, birth.year, final.year, k,
-  Linf, t0, cv)
+plotcdfa.f(
+  proj.object,
+  lengths.of.interest,
+  birth.year,
+  final.year,
+  k,
+  Linf,
+  t0,
+  cv
+)
 }
 \arguments{
 \item{proj.object}{a projection object produced by vbgrowth.f}

@@ -53,7 +53,7 @@ Now query fishbase and make some plots for Atlantic cod. This averages over all 
 
 ```{r getvbparams}
 fish= "Gadus morhua"
-vb.params= popgrowth(fish,fields=c("TLinfinity","K","to"))
+vb.params= matrix(as.numeric(as.matrix(popgrowth(fish,fields=c("TLinfinity","K","to")))),ncol=3)
 vb.mean= apply(vb.params,2,mean,na.rm=T)
 ```
 
@@ -68,7 +68,7 @@ title(fish,outer=T,line=-0.75)
 
 ```{r getvbparamschimack}
 fish= "Trachurus murphyi"
-vb.params= popgrowth(fish,fields=c("TLinfinity","K","to"))
+vb.params= matrix(as.numeric(as.matrix(popgrowth(fish,fields=c("TLinfinity","K","to")))),ncol=3)
 vb.mean= apply(vb.params,2,mean,na.rm=T)
 ```
 

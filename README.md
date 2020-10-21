@@ -54,7 +54,7 @@ over all the VB parameters for cod in fishbase so we call it a generic
 stock.
 
     fish= "Gadus morhua"
-    vb.params= popgrowth(fish,fields=c("TLinfinity","K","to"))
+    vb.params= matrix(as.numeric(as.matrix(popgrowth(fish,fields=c("TLinfinity","K","to")))),ncol=3)
     vb.mean= apply(vb.params,2,mean,na.rm=T)
 
 Make plots for a generic cod stock for say a 2017 year class and length
@@ -68,7 +68,7 @@ to get valuable, 80cm (when they are very valuable)
 ![](README_files/figure-markdown_strict/runvbcod-1.png)
 
     fish= "Trachurus murphyi"
-    vb.params= popgrowth(fish,fields=c("TLinfinity","K","to"))
+    vb.params= matrix(as.numeric(as.matrix(popgrowth(fish,fields=c("TLinfinity","K","to")))),ncol=3)
     vb.mean= apply(vb.params,2,mean,na.rm=T)
 
 Make plots for a Chilean mackerel, Trachurus murphyi, stock for say a
