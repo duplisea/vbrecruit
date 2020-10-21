@@ -1,6 +1,6 @@
 ---
 title: "Proportion of a cohort recruiting"
-output: md_document
+output: html_document
 ---
 
 
